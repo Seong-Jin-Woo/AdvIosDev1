@@ -11,10 +11,11 @@ struct ContentView: View {
     @StateObject private var viewModel = TaskViewModel()
     @State private var newTaskTitle = ""
     @State private var selectedTaskType: TaskType = .personal
-    
+
     var body: some View {
         NavigationView {
             VStack {
+                // Task input field, picker, and add button
                 HStack {
                     TextField("Enter task", text: $newTaskTitle)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -36,7 +37,8 @@ struct ContentView: View {
                     }
                 }
                 .padding()
-                
+
+                // Task list with completion toggle
                 List {
                     ForEach(viewModel.tasks) { task in
                         HStack {
@@ -45,14 +47,12 @@ struct ContentView: View {
                                 .foregroundColor(task.isCompleted ? .gray : .black)
                             Spacer()
                             Button(action: {
+                                // Toggle task completion on button press
                                 viewModel.toggleTaskCompletion(task: task)
                             }) {
                                 Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
                                     .foregroundColor(task.isCompleted ? .green : .gray)
                             }
-                        }
-                        .onTapGesture {
-                            viewModel.toggleTaskCompletion(task: task) // Immediate toggle on tap
                         }
                     }
                     .onDelete(perform: viewModel.removeTask)

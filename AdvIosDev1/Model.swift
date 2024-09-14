@@ -15,7 +15,7 @@ protocol TaskProtocol {
 }
 
 // Base Task class
-class Task: TaskProtocol, Identifiable {
+class Task: TaskProtocol, Identifiable, ObservableObject {
     var id = UUID()
     var title: String
     var isCompleted: Bool = false
