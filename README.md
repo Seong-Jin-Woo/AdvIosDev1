@@ -1,6 +1,7 @@
 Project Submission: 
 Student Name: Matthew Anthony Cruz
 Student Number: 13547409
+Git Repository: https://github.com/Seong-Jin-Woo/AdvIosDev1.git
 
 For this assignment, I have created a To-Do list application which includes the ability to delete, rename and organise tasks efficiently whilst following the MVVM format. User interface is simple and effective for those who wish to just have reminders of what they need to do. Completes most of the assignment requirements. 
 
