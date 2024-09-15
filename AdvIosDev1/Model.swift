@@ -27,7 +27,7 @@ class Task: TaskProtocol, Identifiable, ObservableObject {
         self.title = title
     }
     
-    var type: String {  // This will be overridden in subclasses
+    var type: String {  
         return "Task"
     }
 
