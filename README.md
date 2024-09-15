@@ -2,11 +2,12 @@ Project Submission:
 Student Name: Matthew Anthony Cruz
 Student Number: 13547409
 
-For this assignment, I have created a To-Do list application which includes the ability to delete, rename and organise tasks efficiently whilst following the MVVM format. User interface is simple
-and effective for those who wish to just have reminders of what they need to do. Completes most of the assignment requirements. 
+For this assignment, I have created a To-Do list application which includes the ability to delete, rename and organise tasks efficiently whilst following the MVVM format. User interface is simple and effective for those who wish to just have reminders of what they need to do. Completes most of the assignment requirements. 
 
 Assignment Specifications:
+
 Project Description:
+
 For this assessment, you will be developing a practical iOS application that demonstrates your proficiency in applying object and protocol-oriented concepts. The project involves creating a user-friendly app that allows users to manage their tasks (user stories tasks) efficiently. You will be required to showcase your understanding of object-oriented programming (OOP), protocol-oriented design, user interface (UI) development, error handling, testing, debugging, and version control. You will follow the design presented in assessment 1.
 
 Project Requirements:
