@@ -8,10 +8,9 @@
 import Foundation
 
 class TaskViewModel: ObservableObject {
-    // Published array of tasks
-    @Published var tasks: [Task] = []
+    @Published var tasks: [Task] = []  // Store tasks as Task objects
     
-    // Add a new task
+    // Add a new task based on the selected task type
     func addTask(title: String, type: TaskType) {
         let task: Task
         switch type {
@@ -25,20 +24,8 @@ class TaskViewModel: ObservableObject {
         tasks.append(task)
     }
     
-    // Remove task
+    // Remove a task by index set
     func removeTask(at offsets: IndexSet) {
         tasks.remove(atOffsets: offsets)
     }
-    
-    // Toggle task completion
-    func toggleTaskCompletion(task: Task) {
-        if let index = tasks.firstIndex(where: { $0.id == task.id }) {
-            tasks[index].toggleCompletion()
-        }
-    }
-}
-
-// Enum to represent task types
-enum TaskType {
-    case personal, work, shopping
 }

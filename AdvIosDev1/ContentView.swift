@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = TaskViewModel()
-    @State private var newTaskTitle = ""
-    @State private var selectedTaskType: TaskType = .personal
-
+    @StateObject private var viewModel = TaskViewModel()  // ViewModel for managing tasks
+    @State private var newTaskTitle = ""  // Input for new task title
+    @State private var selectedTaskType: TaskType = .personal  // Default task type
+    @State private var isEditingNames = false  // Edit mode toggle
+    @State private var isDeleting = false  // Delete mode toggle
+    
     var body: some View {
         NavigationView {
             VStack {
-                // Task input field, picker, and add button
+                // Add Task UI
                 HStack {
                     TextField("Enter task", text: $newTaskTitle)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -37,30 +39,36 @@ struct ContentView: View {
                     }
                 }
                 .padding()
-
-                // Task list with completion toggle
+                
+                // Display the list of tasks
                 List {
-                    ForEach(viewModel.tasks) { task in
-                        HStack {
-                            Text(task.title)
-                                .strikethrough(task.isCompleted, color: .gray)
-                                .foregroundColor(task.isCompleted ? .gray : .black)
-                            Spacer()
-                            Button(action: {
-                                // Toggle task completion on button press
-                                viewModel.toggleTaskCompletion(task: task)
-                            }) {
-                                Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                                    .foregroundColor(task.isCompleted ? .green : .gray)
-                            }
-                        }
+                    ForEach(viewModel.tasks, id: \.id) { task in
+                        TaskRowView(task: task, isEditingNames: $isEditingNames, isDeleting: $isDeleting, viewModel: viewModel)
                     }
                     .onDelete(perform: viewModel.removeTask)
                 }
             }
             .navigationTitle("To-Do List")
             .toolbar {
-                EditButton()
+                // Edit button for renaming tasks
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(isEditingNames ? "Done" : "Rename") {
+                        isEditingNames.toggle()
+                        if isEditingNames {
+                            isDeleting = false
+                        }
+                    }
+                }
+                
+                // Delete button for selecting tasks to delete
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(isDeleting ? "Done" : "Delete") {
+                        isDeleting.toggle()
+                        if isDeleting {
+                            isEditingNames = false
+                        }
+                    }
+                }
             }
         }
     }
